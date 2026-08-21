@@ -3,10 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Student Complaint Management System - Secure Student & Staff Login Portal">
+    <title>Login - Student Complaint Management System</title>
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons for UI enhancements -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to Our Hackathon Project</h1>
-<p>Built by our team.</p>
+
+    <!-- Background Decorative Elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Login Card -->
+        <div class="login-card">
+            
+            <!-- Card Header Header / Branding -->
+            <div class="card-header">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h1 class="portal-title">Student Complaint Management System</h1>
+                <p class="portal-subtitle">Welcome back! Log in to submit and track grievances.</p>
+            </div>
+
+            <!-- Role Selector Switch (Student / Admin option) -->
+            <div class="role-selector" id="roleSelector">
+                <button type="button" class="role-btn active" data-role="student">
+                    <i class="fa-solid fa-user-graduate"></i> Student
+                </button>
+                <button type="button" class="role-btn" data-role="admin">
+                    <i class="fa-solid fa-user-shield"></i> Faculty / Admin
+                </button>
+            </div>
+
+            <!-- Toast / Alert Message Area -->
+            <div class="alert-box" id="alertBox" aria-live="polite"></div>
+
+            <!-- Login Form (Easy to attach to backend action/method) -->
+            <!-- BACKEND CONNECTOR: Set action="/api/login" and method="POST" for server connection -->
+            <form id="loginForm" class="login-form" action="#" method="POST" novalidate>
+                
+                <!-- Input Group: Student ID or Email -->
+                <div class="input-group">
+                    <label for="identifier" id="identifierLabel">Student ID or Email</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input 
+                            type="text" 
+                            id="identifier" 
+                            name="identifier" 
+                            placeholder="e.g. STU12049 or student@univ.edu" 
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+                    <span class="error-msg" id="identifierError">Please enter your Student ID or Email</span>
+                </div>
+
+                <!-- Input Group: Password -->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password" 
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button" class="toggle-password" id="togglePasswordBtn" title="Toggle password visibility" aria-label="Show password">
+                            <i class="fa-regular fa-eye" id="togglePasswordIcon"></i>
+                        </button>
+                    </div>
+                    <span class="error-msg" id="passwordError">Password must be at least 6 characters</span>
+                </div>
+
+                <!-- Form Utilities: Remember Me & Forgot Password -->
+                <div class="form-utilities">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="remember">
+                        <span class="checkmark"></span>
+                        <span class="remember-text">Remember me</span>
+                    </label>
+                    
+                    <a href="#" class="forgot-link" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Log In</span>
+                    <i class="fa-solid fa-arrow-right btn-icon"></i>
+                    <span class="spinner" id="btnSpinner" aria-hidden="true"></span>
+                </button>
+
+            </form>
+
+            <!-- Card Footer -->
+            <div class="card-footer">
+                <p>Need help logging in? <a href="mailto:support@university.edu" class="support-link">Contact Campus IT Helpdesk</a></p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Forgot Password Modal Demo -->
+    <div class="modal-overlay" id="forgotModal" aria-hidden="true">
+        <div class="modal-card">
+            <button class="close-modal" id="closeModalBtn" aria-label="Close modal">&times;</button>
+            <div class="modal-icon">
+                <i class="fa-solid fa-key"></i>
+            </div>
+            <h3>Reset Password</h3>
+            <p>Enter your registered Student ID or University Email address and we'll send you a password reset link.</p>
+            
+            <form id="resetForm">
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="text" id="resetIdentifier" placeholder="Student ID or Email" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn full-width">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
